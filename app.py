@@ -102,8 +102,9 @@ with tab1:
     items_df = load_items()
     vendors = load_vendors()
     with st.form(key="order_form"):
-        wallet_address = st.text_input(f"{aether_flux()} Your Bawaba Wallet", placeholder="e.g., 0x1234...", max_chars=42, unsafe_allow_html=True)
-        vendor_name = st.selectbox("Select Vendor", options=vendors.keys(), format_func=lambda x: f'<span class="vendor-icon">{vendors[x]["icon"]}</span> {x}', unsafe_allow_html=True)
+        st.markdown(f"{aether_flux()} Your Bawaba Wallet", unsafe_allow_html=True)
+        wallet_address = st.text_input("", placeholder="e.g., 0x1234...", max_chars=42)
+        vendor_name = st.selectbox("Select Vendor", options=vendors.keys(), format_func=lambda x: f'{vendors[x]["icon"]} {x}')
         item_options = items_df[items_df["vendor_name"] == vendor_name]["item_name"].tolist()
         item = st.selectbox("Select Item", options=item_options) if item_options else st.write("No items yet!")
         price_kwd = items_df[(items_df["vendor_name"] == vendor_name) & (items_df["item_name"] == item)]["price_kwd"].iloc[0] if item_options else 0
@@ -153,7 +154,8 @@ with tab2:
     st.markdown('<div class="portal-door">🌐</div>', unsafe_allow_html=True)
 
     with st.form(key="upload_form"):
-        wallet_address = st.text_input(f"{aether_flux()} Your Bawaba Wallet ", placeholder="e.g., 0x1234...", max_chars=42, key="upload_wallet", unsafe_allow_html=True)
+        st.markdown(f"{aether_flux()} Your Bawaba Wallet", unsafe_allow_html=True)
+        wallet_address = st.text_input("", placeholder="e.g., 0x1234...", max_chars=42, key="upload_wallet")
         order_id = st.text_input("Order ID", placeholder="e.g., #1234 or CR-123456")
         receipt_vendor = st.text_input("Vendor Name", placeholder="e.g., Talabat")
         receipt_item = st.text_input("Item Purchased", placeholder="e.g., Shawarma")
@@ -226,7 +228,8 @@ with tab4:
         item_name = st.text_input("Item Name", placeholder="e.g., Cosmic Wrap")
         price_kwd = st.number_input("Price (KWD)", min_value=0.0, step=0.01)
         description = st.text_area("Description", placeholder="e.g., Stellar spiced wrap")
-        vendor_wallet = st.text_input(f"{aether_flux()} Vendor Bawaba Wallet", placeholder="e.g., 0x5678...", max_chars=42, unsafe_allow_html=True)
+        st.markdown(f"{aether_flux()} Vendor Bawaba Wallet", unsafe_allow_html=True)
+        vendor_wallet = st.text_input("", placeholder="e.g., 0x5678...", max_chars=42)
         vendor_icon = st.selectbox("Choose Your Icon", options=["🌌", "☄️", "🌀", "🌠", "💫"])
         add_button = st.form_submit_button(label="Add Item")
 
