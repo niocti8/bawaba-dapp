@@ -8,12 +8,12 @@ import os
 from datetime import datetime
 import time
 
-# RSK setup (simulated)
+# RSK setup (simulated with valid dummy address)
 w3 = Web3(Web3.HTTPProvider('https://public-node.testnet.rsk.co'))
-contract_address = "0xSimulatedAddress"
+contract_address = "0x1234567890123456789012345678901234567890"  # Valid dummy address
 contract_abi = [{"inputs":[{"internalType":"address","name":"user","type":"address"},{"internalType":"address","name":"vendor","type":"address"},{"internalType":"bytes32","name":"orderId","type":"bytes32"}],"name":"claimReward","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"name":"usedOrderIds","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"}]
 contract = w3.eth.contract(address=contract_address, abi=contract_abi)
-EXA_ADDRESS = "0xSimulatedExaAddress"
+EXA_ADDRESS = "0x0987654321098765432109876543210987654321"  # Valid dummy address
 EXA_PRIVATE_KEY = "simulated_key"
 
 # File setup
